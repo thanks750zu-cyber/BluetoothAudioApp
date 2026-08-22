@@ -28,9 +28,19 @@ jobs:
         npm install
         npm install @capacitor/core @capacitor/cli @capacitor/android
 
-    - name: Add Android Platform
+    - name: Create Capacitor Config and Add Android
       run: |
+        echo '{
+          "appId": "com.bluetooth.audioapp",
+          "appName": "BluetoothAudioApp",
+          "webDir": "dist"
+        }' > capacitor.config.json
+        
+        mkdir -p dist
+        echo "<html><body><h1>Bluetooth App</h1></body></html>" > dist/index.html
+        
         npx cap add android
+        npx cap sync
 
     - name: Build Debug APK with Gradle
       run: |
