@@ -1,4 +1,4 @@
-name: Build Android APK
+kname: Build Android APK
 
 on:
   push:
@@ -28,10 +28,9 @@ jobs:
         npm install
         npm install @capacitor/core @capacitor/cli @capacitor/android
 
-    - name: Init Capacitor and Add Android Platform
+    - name: Add Android Platform Directly
       run: |
-        npx cap init BluetoothAudioApp com.bluetooth.audio.app --web-dir . --yes
-        npx cap add android
+        npx cap add android --no-sync || true
         npx cap sync android
 
     - name: Build Debug APK with Gradle
