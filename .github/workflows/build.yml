@@ -1,4 +1,4 @@
-kname: Build Android APK
+name: Build Android APK
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
         npm install
         npm install @capacitor/core @capacitor/cli @capacitor/android
 
-    - name: Add Android Platform Directly
+    - name: Add Android Platform
       run: |
         npx cap add android --no-sync || true
         npx cap sync android
