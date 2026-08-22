@@ -30,8 +30,7 @@ jobs:
 
     - name: Add Android Platform
       run: |
-        npx cap add android --no-sync || true
-        npx cap sync android
+        npx cap add android
 
     - name: Build Debug APK with Gradle
       run: |
