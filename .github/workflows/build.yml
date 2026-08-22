@@ -2,7 +2,7 @@ name: Build Android APK
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
 
 jobs:
   build:
@@ -12,21 +12,22 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v3
 
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3
-      with:
-        distribution: 'temurin'
-        java-version: '17'
-
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '18'
 
-    - name: Install Project Dependencies
+    - name: Install Dependencies
       run: npm install
 
-    - name: Build Debug APK placeholder
+    - name: Build Project / Package Placeholder
       run: |
-        echo "Building process initialized..."
         mkdir -p build/output
+        # يمكنك إضافة أوامر بناء التطبيق الخاصة بك هنا، مثال:
+        echo "Building Android APK..." > build/output/app-debug.apk
+
+    - name: Upload APK Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: app-release
+        path: build/output/*.apk
