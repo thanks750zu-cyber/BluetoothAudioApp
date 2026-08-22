@@ -42,9 +42,11 @@ jobs:
         npx cap add android
         npx cap sync
 
-    - name: Build Debug APK with Capacitor Android
+    - name: Build Debug APK with Gradle
       run: |
-        npx cap build android --debug
+        cd android
+        chmod +x gradlew
+        ./gradlew assembleDebug -Pandroid.injected.build.model.only=false
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
